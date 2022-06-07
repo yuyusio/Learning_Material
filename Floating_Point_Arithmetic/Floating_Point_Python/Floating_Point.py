@@ -12,7 +12,6 @@
 # Code written by yuyusio
 ##################################################################
 
-# Enable <Decimal>
 from decimal import *
 # Enable ANSI Escape Code in Windows Terminal
 import os
@@ -39,7 +38,7 @@ def add_float(num1, num2):
         dif = len(num1[1])-len(num2[1])
         num_back = int(num1[1]) + int(num2[1]) * (10**(dif))
         num_back = str(num_back)
-        if len(num_back) > dif:
+        if len(num_back) > len(num1[1]):
             num_front = str(int(num_front)+1)
             num_back = num_back[1:]
 
@@ -47,15 +46,18 @@ def add_float(num1, num2):
         dif = len(num2[1])-len(num1[1])
         num_back = int(num2[1]) + int(num1[1]) * (10**(dif))
         num_back = str(num_back)
-        if len(num_back) > dif:
+        if len(num_back) > num2[1]:
             num_front = str(int(num_front)+1)
             num_back = num_back[1:]
 
     else:
         num_back = int(num2[1]) + int(num1[1])
         num_back = str(num_back)
+        if len(num_back) > len(num1[1]):
+            num_front = str(int(num_front)+1)
+            num_back = num_back[1:]
 
-    return float(num_front + '.' + num_back)
+    return num_front + '.' + num_back
 
 
 def dif_float(num1, num2):
@@ -79,7 +81,7 @@ def dif_float(num1, num2):
         num_front -= 1
         num_back = 10+num_back
 
-    return float(str(num_front) + '.' + str(num_back))
+    return str(num_front) + '.' + str(num_back)
 
 
 if __name__ == "__main__":
