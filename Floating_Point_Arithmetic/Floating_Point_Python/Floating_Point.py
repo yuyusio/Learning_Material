@@ -63,23 +63,29 @@ def add_float(num1, num2):
 def dif_float(num1, num2):
     num1 = floatify(num1)
     num2 = floatify(num2)
+    num_back = 0
+    num_back_len = 0
+    dif = 0
 
     num_front = int(num1[0]) - int(num2[0])
 
     if len(num1[1]) > len(num2[1]):
+        num_back_len = len(num1[1])
         dif = len(num1[1])-len(num2[1])
         num_back = int(num1[1]) - int(num2[1]) * (10**(dif))
 
     elif len(num2[1]) > len(num1[1]):
+        num_back_len = len(num2[1])
         dif = len(num2[1])-len(num1[1])
         num_back = int(num1[1]) * (10**(dif)) - int(num2[1])
 
     else:
+        num_back_len = len(num1[1])
         num_back = int(num1[1]) - int(num2[1])
 
     if num_back < 0:
         num_front -= 1
-        num_back = 10+num_back
+        num_back = 10**num_back_len+num_back
 
     return str(num_front) + '.' + str(num_back)
 
