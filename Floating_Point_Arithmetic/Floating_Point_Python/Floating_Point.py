@@ -19,7 +19,6 @@ os.system("")
 
 
 def floatify(num):
-    num = str(num)
     pos = 0
 
     while num[pos] != '.':
@@ -63,9 +62,6 @@ def add_float(num1, num2):
 def dif_float(num1, num2):
     num1 = floatify(num1)
     num2 = floatify(num2)
-    num_back = 0
-    num_back_len = 0
-    dif = 0
 
     num_front = int(num1[0]) - int(num2[0])
 
@@ -87,6 +83,9 @@ def dif_float(num1, num2):
         num_front -= 1
         num_back = 10**num_back_len+num_back
 
+    if len(str(num_back)) < num_back_len:
+        num_back = '0'*(num_back_len-len(str(num_back))) + str(num_back)
+
     return str(num_front) + '.' + str(num_back)
 
 
@@ -106,7 +105,7 @@ if __name__ == "__main__":
     print(Decimal(a+b))
     print('')
     print('\033[34m'+"Modified arithmetic operation: "+'\033[0m')
-    print(add_float(a,b))
+    print(add_float("0.1","0.2"))
 
     print('\033[30m'+'-'*100+'\033[0m')
 
@@ -118,7 +117,7 @@ if __name__ == "__main__":
     print(Decimal(a+b))
     print('')
     print('\033[34m'+"Modified arithmetic operation result: "+'\033[0m')
-    print(add_float(a,b))
+    print(add_float("4782.9681","1920823.4"))
 
     print('\033[30m'+'-'*100+'\033[0m')
 
@@ -130,6 +129,6 @@ if __name__ == "__main__":
     print(Decimal(a-b))
     print('')
     print('\033[34m'+"Modified arithmetic operation result: "+'\033[0m')
-    print(dif_float(a,b))
+    print(dif_float("2.0","1.8"))
 
     print('\033[30m'+'-'*100+'\033[0m')
